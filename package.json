@@ -3,9 +3,9 @@
   "version": "1.0.2x",
   "description": "Backend de la app Approf",
   "private": true,
-  "main": "node server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npm install && node server.js"
+    "start": "node server.js"
   },
   "author": "Team",
   "license": "ISC",
