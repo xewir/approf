@@ -11,12 +11,8 @@ var bodyParser = require('body-parser');
 var auth_middleware = require('./auth');
 var updateD = require('./updateDays');
 
-
-app.configure(function() {
-  // Set the IP and port to use the OpenShift variables.
-  app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 8080);
-  app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
-});
+var port = process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 8080;
+var ip = process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost';
 
 // Inicializa el servidor HTTP
 var app = express();
@@ -67,6 +63,6 @@ app.get('*', function(req, res) {
 setInterval(updateD.updateDays,8.64e+7);
 
 // Empieza el servidor a escuchar peticiones en el puerto seleccionado
-app.listen(app.get('port'), app.get('ip'), function(){
-  console.log(chalk.green('Express server ejecutandose en ' + (process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "localhost") + " : " + port));
+app.listen(port, ip, function(){
+  console.log(chalk.green('Express server ejecutandose en ' + ip + " : " + port));
 });
