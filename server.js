@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var auth_middleware = require('./auth');
 var updateD = require('./updateDays');
 
-var port = process.env.OPENSHIFT_NODEJS_PORT || config.puerto || 8080;
+var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || config.puerto || 8080;
 
 // Inicializa el servidor HTTP
 var app = express();
@@ -64,4 +64,4 @@ setInterval(updateD.updateDays,8.64e+7);
 // Empieza el servidor a escuchar peticiones en el puerto seleccionado
 app.listen(port);
 
-console.log(chalk.green('Express server ejecutandose en ' + (process.env.OPENSHIFT_NODEJS_IP || "localhost") + " : " + port));
+console.log(chalk.green('Express server ejecutandose en ' + (process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "localhost") + " : " + port));
